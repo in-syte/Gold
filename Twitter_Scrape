@@ -8,13 +8,13 @@ import csv		# simplifies the process of writing data to Comma Separated Values i
 # The consumer keys can be found on your application's Details
 # page located at https://dev.twitter.com/apps (under "Keys and tokens")
  # PUT YOUR KEYS AND SECRETS IN HERE, IT WONT WORK WITHOUT YOUR KEYS FROM TWITTER !!!!!
-consumer_key="v8yHgDxODllDFbOlo449GA2BF"
-consumer_secret="gGPaTBaqip9lyOvPf5Hv7hy2jM7uKoRKP0wR2IuJOSd6EAtqOQ"
+consumer_key="xxxxxxxxxxxxx"
+consumer_secret="xxxxxxxxxxxx"
  
 # After the step above, you will be redirected to your app's page.
 # Create an access token under the the "Your access token" section
-access_token="322590327-AODk44KW6TwJQBWz5L00Y9PDD1q3bFDUS9XjBsy7"
-access_token_secret="rV8T1d6qPUjMPUmDD2FTMMQuelvUzEWzZIM5k5Yv3mquh"
+access_token="xxxxxxxxxxxxxx"
+access_token_secret="xxxxxxxxxxxx"
  
 auth = twitter.oauth.OAuth(access_token, access_token_secret,consumer_key, consumer_secret)
 twitter_api = twitter.Twitter(auth=auth)
