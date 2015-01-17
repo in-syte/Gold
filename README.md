@@ -1,30 +1,18 @@
 # Goldsmiths-Development
 Course Leader:  Andy Freeman
-Assignment 2 - Coding Assignment
+Assignment 2 - Coding Assignment:  Yee-Liu Williams
 
 
+Templates and Libraries
 
+Listing of attributions 
+Templates, 
+Libraries or 
+Other tools 
 
+Link to a github GIST 
+Python code GITHUB - 
+Google Sheet data
 
-
-Acquisition (10 marks)
-
-Runnable code
-Quality and efficiency of the code
-Styling and commenting
-Discussion of data source and collection methodology
-Data Storage
-Presentation (10 marks)
-
-HTML (including SEO and Social)
-Interactivity of chart
-Use of JavaScript
-Overall styling of page
-Discussion of practical uses
-Overall (5 marks)
-
-Responsive/Accessible
-Attributuions
-Discussion of potential applications
-Technical difficulty
-Originality and Impact
+Link to an HTML webpage 
+Will Christmas end in divorce? - http://igor.gold.ac.uk/~ywill001/divorce.html
