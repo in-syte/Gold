@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Social Media Sharing Code from sharethis.com-->
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+
+    <!--Meta Data Information-->
+
+<title> Divorce | End in Divorce</title>
+<meta name="description" content="Divorce | Will Christmas end in divorce?" />
+<meta name="author" content="Yee-Liu Williams, MA Goldsmiths Digital Journalism" />
+<meta name="keywords" content="divorce, marriage, separation, twitter, data">
+
+
+    <!--CSS styling for webpage to test to put into CSS file-->
+  <link rel="stylesheet" type="text/css" href="style1.css">
+
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+ 
+    // Load the Visualization API and the core charts package.
+    google.load('visualization', '1.0', {
+        'packages': ['corechart']
+    });
+
+    // Set a callback to run when the Google Visualization API is fully loaded.
+    google.setOnLoadCallback(getData);
+
+    function getData() {
+        // this is the key for the spreadhseet with your data in it, you can copy this from the URL for the sheet
+        var key = "12nqJNFxwCvT_viNrJ_mfxJX8DqhkWN5w3cLvX37BQm8";
+        // this is the range in the sheet to find the data
+        var range = "A1:D14";
+        // get the date from the range specified
+        var query = new google.visualization.Query('https://docs.google.com/spreadsheet/ccc?key=' + key + '&usp=sharing&range=' + range);
+        // Send the query with a callback function, to be executed when the data is reeady
+
+        query.send(drawChart);
+    }
+
+
+    // Callback that creates and populates a data table,
+    // instantiates the line chart, passes in the data and
+    // draws it.
+    function drawChart(response) {
+
+        // standard bit of code in case we are offline or you deleted the google sheet or something like that
+        if (response.isError()) {
+            console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+        }
+
+        // dig out the data from the response to the query 
+        var data = response.getDataTable();
+        // there are squillions of cool options for your charts, shove them into this JSON object
+        // read more https://developers.google.com/chart/interactive/docs/gallery/linechart
+         var options = {
+         
+            'vAxes':{
+        0: {title: "No of Tweets", viewWindowMode: 'explicit', viewWindow: { min: 0, max: 3500 } }, 
+            },
+//            'width': 1000, - this sets a fixed width and therefore makes unresponsive.  Code included
+//            'height': 400, - using CSS and event handler to resize and make Google chart responsive
+            'legend': { position: 'top' },
+             hAxis: {title: "Figure 1:  Can Twitter predict whether solicitors will be busy with divorce settlements in 2015?"},
+        };
+        // Instantiate and draw our line chart, passing in the options JSON object.
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+        window.addEventListener('resize', function() {
+            chart.draw(data, options);
+        }, false);
+
+    }
+
+    </script>
+</head>
+ 
+<body>
+
+<div id="header">
+<h1>Will Christmas end in divorce?</h1>
+</div> 
+
+<!--Div that will hold the chart-->
+ <div id="chart_div"></div>
+
+    
+<!--Content that includes the Brief Discussion-->
+
+<h3>Overview</h3>
+
+<p>The hypothesis is that over the festive period the strain on marital relationships can be the last straw with a roaring trade for solicitors in divorce settlements early in the New Year. The aim was to gather data from twitter to establish whether the no of tweets on <strong>#divorce </strong>  provided any interpretive or predictive information to write a story to discuss whether this is true or not. </p>
+
+<h3>Discussion</h3>
+
+<p>Using python code, data were collected based on hashtags: <strong> #divorce, #marriage, #separation. </strong> The number of tweets was written to external.csv file collected over a 10-day period (22 December 2014 to 2 January 2015) on the hosted server igor.gold.ac.uk. The collected data is presented as a time series using a Google visualization chart in Figure 1 above. </p>
+
+<p>
+    The end-to-end process breaks down into two major coding exercises (staages 1 and 4 below) but identified as four discreet stages:
+</p>
+
+<ol>
+
+    <li><strong>Extraction</strong>: Python coding to extract data using Twitter's API.  <a href="https://gist.github.com/revox/59309d122c203ab025a8">Open source code</a> was modified to include selected hashtags and coding to write to external data file.  Template and libraries used are listed. </li>
+    <li><strong>Transformation:</strong> Use of Excel to clean, qualify the export/import data; use of data pivot table functionality to summarise values that transformed the data into more meaningful information.</li>
+    <li><strong>Loading:</strong> Summarised data was loaded using Google sheets to provide reference and source to generate Google visualisation chart with a time line series.</li>
+    <li><Strong>Presentation:</strong> The HTML coding for a web page, using HTML template that included code to fetch source data, load Google Visualization API and styling to include responsive design for the web page.</li>
+
+</ol>
+
+<h3>Issues </h3>
+
+<p> Some of the initial issues are listed below that caused needless frustration: </p>
+
+<ul>
+    <li>initial run of python code did not write to external file.  After several trials, it was found that writing could take up to over an hour before any feedback was given.  This was time consuming and very frustrating believing that the code was not running correctly;  </li>
+    <li>the python code would stop for no particular reason.  Error message indicated possible text field as 'userid' that made little sense when it had been running previously ;</li>
+    <li>Additional hash tags appeared not to collect but when the code stopped and recoded #marriage and #separation was collected from 29/12.  This was assumed to be some vagray in my coding - the additional time lines are shown for completeness and interest. </li>
+  
+
+</ul>
+
+<p>The python code using 'nohup' parameter was run but stopped on 29/12 with some loss of data.  This wasn't considered that significant at a time of 22.00 and the code was resumed the following day.  </p>
+<p>Volume of data was large difficult to filter for the selected hashtags causing Excel to hang - it was a slow process - although final volumes for chosen hash tags was relatively small. The data was cleaned for erroneous, corrupt data, identified during MIDfunction copy function - a possible bug in Excel.</p>
+<p>There were further problems in testing of the responsive code to Google Charts on different devices. Testing revealed issues of no display in certain browsers. This was tracked to 'privacy' settings and when testing positive in my own account but didn't display to other users.  This was tracked down to share 'public' settings of Google sheets and as a result didn't display when I was testing on different browsers.</p>
+
+<h3>Interpretation of Data</h3>
+<p>A key question - can I determine a story to prove my hypothesis from the collected data?  </p>
+<p>Without much deep analysis, I would question the validity of the spike around 30/31 with volumes of 3512 to dramatic drop to 145 to steady decline.  This suggested that the pattern of tweets were manipulated and not genuine.  To satisfy my curiosity the spike was due to duplication from one particular user that made me question the validity of twitter as being a viable platform to create a story from. I was also interested in the difference between #divorce and #marriage that suggested that building relationships were stronger than looking into divorce.</p>
+<p>Although the pattern of tweets demonstrate a rise over festive period, my sense is that the volume of tweets is not indicative or persuasive enough. But would require further investigation looking at possible sentiment analysis and the source of the other tweets as a basis for any substantive story - if at all.</p> 
+
+<p>The conclusion - there was not enough solid indicative data to claim that divorce is on the rise after Christmas.</p>
+
+  <!--Add social sharing here-->
+
+<script type="text/javascript">stLight.options({publisher: "63a96489-7377-447e-a70b-7374d7f4f0dd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<script>
+var options={ "publisher": "63a96489-7377-447e-a70b-7374d7f4f0dd", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "linkedin", "email", "sharethis"]}};
+var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+</script>
+
+<div id="footer">
+Sandbox Assignment 2: Coding | Yee-Liu Williams, MA Digital Journalism | Templates and Libraries
+</div>
+
+</body>
+ 
+</html>
